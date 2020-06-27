@@ -1,4 +1,4 @@
-# node_mongo_rest_api
+# Building a REST API server in Node.js with Express and MongoDB
 Use the Express library as the application server and MongoDB as the database
 
 ## Initializing our application
