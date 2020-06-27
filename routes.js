@@ -1,6 +1,6 @@
 const express = require('express')
 const Joi = require('@hapi/joi')
-const { insertItem, getItems, updateQuantity } = require('./db')
+const { insertItem, getItems, updateQuantity, deleteItem } = require('./db')
 
 const router = express.Router()
 
@@ -80,5 +80,24 @@ router.put('/item/:id/quantity/:quantity', (req, res) => {
             res.status(500).end()
         })
 })
+
+router.delete('/item/:id', (req, res) => {
+    // We can get the values from the `req.params` object
+    const { id } = req.params
+
+    // The updateQuantity function is called with the id and quantity increment
+    deleteItem(id)
+        .then(() => {
+            // If the update is successful, return a 200 OK status
+            res.status(200).end()
+        })
+        .catch((err) => {
+            // If the update fails, return a 500 server error
+            console.log(err)
+            res.status(500).end()
+        })
+})
+
+
 
 module.exports = router
